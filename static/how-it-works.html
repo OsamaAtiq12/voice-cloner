@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How it works · Voice Cloner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand brand-link" href="/">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <div>
+        <p class="brand-name">Voice Cloner</p>
+        <p class="brand-sub">Powered by OmniVoice · Local</p>
+      </div>
+    </a>
+    <nav class="top-nav">
+      <a href="/">Studio</a>
+      <a href="/how-it-works" class="active">How it works</a>
+    </nav>
+  </header>
+
+  <main class="shell guide">
+    <section class="hero-panel guide-hero">
+      <p class="eyebrow">Simple guide</p>
+      <h1>How Voice Cloner<br /><em>works</em></h1>
+      <p class="lede">
+        This page explains every button and setting in everyday language.
+        You do not need any technical knowledge — just follow the steps.
+      </p>
+    </section>
+
+    <nav class="guide-toc panel">
+      <p class="guide-toc-title">Jump to a section</p>
+      <div class="guide-toc-links">
+        <a href="#big-picture">The big picture</a>
+        <a href="#quick-start">Quick start</a>
+        <a href="#inputs">What you fill in</a>
+        <a href="#speaking">Speaking controls</a>
+        <a href="#advanced">Advanced settings</a>
+        <a href="#tips">Tips for best results</a>
+        <a href="#privacy">Privacy &amp; permission</a>
+      </div>
+    </nav>
+
+    <article class="guide-article panel" id="big-picture">
+      <h2>The big picture</h2>
+      <p>
+        Voice Cloner listens to a short recording of someone speaking, learns how their voice sounds,
+        then reads <strong>new words</strong> in that same voice.
+      </p>
+      <ol class="steps">
+        <li><strong>Give it a voice sample</strong> — a short clip of the person talking.</li>
+        <li><strong>Type what you want said</strong> — any sentence or paragraph.</li>
+        <li><strong>Press Generate</strong> — the tool creates a new audio file you can play and download.</li>
+      </ol>
+      <p class="callout">
+        Everything runs on <em>your</em> computer. Your audio is not uploaded to the internet.
+      </p>
+    </article>
+
+    <article class="guide-article panel" id="quick-start">
+      <h2>Quick start (the easy path)</h2>
+      <ol class="steps">
+        <li>Open the <a href="/">Studio</a> page.</li>
+        <li>In <strong>Text to speak</strong>, type the words you want in the cloned voice.</li>
+        <li>In <strong>Reference audio</strong>, drop a clear clip of the voice (about 3–10 seconds).</li>
+        <li>Leave the other settings alone for now.</li>
+        <li>Click <strong>Generate speech</strong> and wait a few seconds.</li>
+        <li>Press play in the Output box, or download the WAV file.</li>
+      </ol>
+      <p>
+        That is all most people need. The rest of this page explains every option if you want more control.
+      </p>
+    </article>
+
+    <article class="guide-article panel" id="inputs">
+      <h2>What you fill in</h2>
+
+      <div class="term">
+        <h3>Text to speak</h3>
+        <p>
+          The script the cloned voice will say. Type or paste anything — a sentence, a paragraph, or a longer script.
+        </p>
+      </div>
+
+      <div class="term">
+        <h3>Language</h3>
+        <p>
+          Which language the text is in. <strong>Auto-detect</strong> is usually perfect — the tool figures it out.
+          Only change this if the result sounds wrong for that language.
+        </p>
+      </div>
+
+      <div class="term">
+        <h3>Reference audio</h3>
+        <p>
+          A short recording of the voice you want to copy. Think of it as a “voice fingerprint.”
+        </p>
+        <ul>
+          <li><strong>Best length:</strong> 3 to 10 seconds</li>
+          <li><strong>Best quality:</strong> clear speech, little background noise, one person talking</li>
+          <li><strong>Formats:</strong> WAV, MP3, FLAC, and similar audio files work</li>
+        </ul>
+        <p>
+          Longer clips are not always better — short and clear usually clones more accurately.
+        </p>
+      </div>
+
+      <div class="term">
+        <h3>Output</h3>
+        <p>
+          Where your finished audio appears. After generation you can play it here and download a WAV file
+          to use in videos, messages, or other apps.
+        </p>
+      </div>
+    </article>
+
+    <article class="guide-article panel" id="speaking">
+      <h2>Speaking controls</h2>
+      <p>These change how the speech sounds. Defaults are already good for most people.</p>
+
+      <div class="term">
+        <h3>Speed</h3>
+        <p>
+          How fast the voice talks.
+          <strong>1.00×</strong> is normal.
+          Higher = faster (and shorter).
+          Lower = slower (and longer).
+        </p>
+      </div>
+
+      <div class="term">
+        <h3>Fixed duration (seconds)</h3>
+        <p>
+          Force the whole clip to last a specific number of seconds.
+          Leave this empty (Auto) unless you need exact timing — for example, to fit a video slot.
+          If you set a duration, it overrides Speed.
+        </p>
+      </div>
+
+      <div class="term">
+        <h3>Quality steps</h3>
+        <p>
+          How carefully the AI builds the voice. More steps = better quality, but slower.
+        </p>
+        <ul>
+          <li><strong>16</strong> — faster, good for quick drafts</li>
+          <li><strong>32</strong> — balanced (recommended)</li>
+          <li><strong>48–64</strong> — highest quality, takes longer</li>
+        </ul>
+      </div>
+
+      <div class="term">
+        <h3>Cleaner speech (denoise)</h3>
+        <p>
+          When checked, the tool aims for cleaner, clearer speech.
+          Keep this on unless you are experimenting.
+        </p>
+      </div>
+
+      <div class="term">
+        <h3>Normalize numbers to words</h3>
+        <p>
+          When checked, numbers are read as words.
+          Example: <em>2345</em> becomes “two thousand three hundred forty-five” instead of “two three four five.”
+          Turn this on if your script has lots of numbers, prices, or years.
+        </p>
+      </div>
+    </article>
+
+    <article class="guide-article panel" id="advanced">
+      <h2>Advanced settings</h2>
+      <p>
+        You can ignore this whole section and still get great results.
+        These are fine-tuning knobs for people who want to experiment.
+      </p>
+
+      <div class="term">
+        <h3>Guidance scale</h3>
+        <p>
+          How strongly the AI sticks to your instructions and reference voice.
+          Default <strong>2.0</strong> is a solid middle ground.
+          Too high can sound stiff; too low can sound looser or less accurate.
+        </p>
+      </div>
+
+      <div class="term">
+        <h3>Time shift</h3>
+        <p>
+          A technical timing setting for how the AI builds sound over time.
+          Default <strong>0.10</strong> is recommended. Change only if you are testing.
+        </p>
+      </div>
+
+      <div class="term">
+        <h3>Position temperature</h3>
+        <p>
+          Controls how “adventurous” the AI is when choosing what to generate next in the audio pattern.
+          <strong>0</strong> is very predictable.
+          Higher values add more variety (and sometimes more randomness).
+          Default is <strong>5.0</strong>.
+        </p>
+      </div>
+
+      <div class="term">
+        <h3>Class temperature</h3>
+        <p>
+          Similar idea, but for the tiny sound pieces the AI picks.
+          Default <strong>0.0</strong> is the safest / most consistent choice.
+        </p>
+      </div>
+
+      <div class="term">
+        <h3>Layer penalty</h3>
+        <p>
+          Helps the AI build the voice in a stable order, from big structure to fine detail.
+          Default <strong>5.0</strong> works well for most voices.
+        </p>
+      </div>
+
+      <div class="term">
+        <h3>Pad silence (seconds)</h3>
+        <p>
+          Adds a tiny bit of quiet at the start and end of the audio so it does not feel cut off.
+          Default <strong>0.1</strong> seconds. Set to <strong>0</strong> for no padding.
+        </p>
+      </div>
+
+      <div class="term">
+        <h3>Fade in/out (seconds)</h3>
+        <p>
+          Softly fades the volume up at the start and down at the end, so clicks are less likely.
+          Default <strong>0.1</strong> seconds. Set to <strong>0</strong> to turn fades off.
+        </p>
+      </div>
+
+      <div class="term">
+        <h3>Chunk duration &amp; chunk threshold</h3>
+        <p>
+          For <strong>long scripts</strong>, the tool splits the job into smaller pieces so your computer
+          does not run out of memory.
+        </p>
+        <ul>
+          <li><strong>Chunk threshold (30s default)</strong> — if the speech would be longer than this, chunking turns on.</li>
+          <li><strong>Chunk duration (15s default)</strong> — roughly how long each piece should be.</li>
+        </ul>
+        <p>For short clips, you can leave these alone.</p>
+      </div>
+
+      <div class="term">
+        <h3>Preprocess reference audio</h3>
+        <p>
+          Cleans up the sample before cloning — for example, trimming long silences.
+          Keep this on for everyday use.
+        </p>
+      </div>
+
+      <div class="term">
+        <h3>Post-process output (trim silence)</h3>
+        <p>
+          Cleans the finished audio by removing long quiet gaps.
+          Keep this on unless you set a fixed duration and need the length to match exactly
+          (in that case, turn this off).
+        </p>
+      </div>
+    </article>
+
+    <article class="guide-article panel" id="tips">
+      <h2>Tips for best results</h2>
+      <ul class="tips">
+        <li>Use a quiet room and a clear recording of one speaker.</li>
+        <li>Prefer 3–10 seconds of natural talking over a long, noisy clip.</li>
+        <li>If the clone will speak English, an English reference clip usually sounds more natural.</li>
+        <li>You can clone across languages, but the result may keep a light accent from the original clip.</li>
+        <li>Write numbers as words, or turn on <strong>Normalize numbers to words</strong>.</li>
+        <li>Start with defaults. Only change Advanced settings if something specific feels off.</li>
+      </ul>
+    </article>
+
+    <article class="guide-article panel" id="privacy">
+      <h2>Privacy &amp; permission</h2>
+      <p>
+        Voice Cloner runs locally on your machine using the OmniVoice model stored in this project.
+        Still, please only clone voices you have the right to use — your own voice, or someone who gave clear permission.
+      </p>
+      <p>
+        Do not use this tool to impersonate people for scams, fraud, or anything harmful.
+      </p>
+      <p class="guide-cta">
+        <a class="btn primary" href="/">Back to the studio</a>
+      </p>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <p>Runs entirely on your machine with the local OmniVoice model.</p>
+  </footer>
+</body>
+</html>
