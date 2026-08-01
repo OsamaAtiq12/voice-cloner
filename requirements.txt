@@ -1,0 +1,8 @@
+# Install PyTorch first (see README), then:
+omnivoice
+fastapi
+uvicorn[standard]
+python-multipart
+soundfile
+aiofiles
+huggingface_hub

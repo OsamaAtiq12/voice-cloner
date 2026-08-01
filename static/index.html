@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Voice Cloner</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+  <div class="atmosphere" aria-hidden="true"></div>
+  <div class="noise" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand brand-link" href="/">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <div>
+        <p class="brand-name">Voice Cloner</p>
+        <p class="brand-sub">Powered by OmniVoice · Local</p>
+      </div>
+    </a>
+    <div class="topbar-right">
+      <nav class="top-nav">
+        <a href="/" class="active">Studio</a>
+        <a href="/how-it-works">How it works</a>
+      </nav>
+      <div class="status-pill" id="statusPill" data-state="loading">
+        <span class="status-dot"></span>
+        <span id="statusText">Loading model…</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="shell compact">
+    <section class="hero-compact">
+      <p>
+        Upload a short voice clip, type your words, generate.
+        <a class="inline-link" href="/how-it-works">How it works</a>
+      </p>
+    </section>
+
+    <section class="workspace">
+      <form id="cloneForm" class="panel studio">
+        <input type="hidden" name="mode" id="modeInput" value="clone" />
+
+        <div class="studio-main">
+          <label class="field text-field">
+            <span class="label-row">
+              <span class="label">Text to speak</span>
+              <select name="language" id="languageSelect" class="lang-inline" aria-label="Language">
+                <option value="Auto">Auto-detect</option>
+              </select>
+            </span>
+            <textarea
+              name="text"
+              id="textInput"
+              rows="6"
+              placeholder="Type or paste the words you want in the cloned voice…"
+              required
+            ></textarea>
+          </label>
+
+          <div class="field audio-field">
+            <span class="label">Reference audio</span>
+            <label class="dropzone" id="dropzone">
+              <input type="file" name="ref_audio" id="refAudio" accept="audio/*,.wav,.mp3,.flac,.ogg,.m4a" hidden />
+              <div class="dropzone-inner">
+                <strong>Drop voice clip</strong>
+                <span>3–10 sec · click to browse</span>
+              </div>
+              <div class="file-chip hidden" id="fileChip">
+                <span id="fileName"></span>
+                <button type="button" id="clearFile" aria-label="Remove file">×</button>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <div class="studio-output">
+          <div class="result-card">
+            <div class="result-head">
+              <h2>Output</h2>
+              <span class="meta" id="resultMeta">Ready when you are</span>
+            </div>
+            <div class="player-shell" id="playerShell">
+              <div class="player-empty" id="playerEmpty">
+                <p>Cloned speech appears here</p>
+              </div>
+              <audio id="audioPlayer" controls class="hidden"></audio>
+            </div>
+            <div class="result-actions">
+              <a class="btn ghost hidden" id="downloadBtn" download>Download WAV</a>
+              <p class="status-line" id="formStatus" role="status"></p>
+            </div>
+          </div>
+
+          <button type="submit" class="btn primary" id="generateBtn">
+            <span class="btn-label">Generate speech</span>
+            <span class="btn-spinner hidden" aria-hidden="true"></span>
+          </button>
+        </div>
+
+        <details class="advanced settings compact-settings" open>
+          <summary>Speaking controls</summary>
+          <div class="attrs dense">
+            <label class="field">
+              <span class="label">Speed <span id="speedVal">1.00×</span></span>
+              <input type="range" name="speed" id="speed" min="0.5" max="2" step="0.05" value="1" />
+            </label>
+            <label class="field">
+              <span class="label">Duration (sec)</span>
+              <input type="number" name="duration" id="duration" min="0" step="0.1" placeholder="Auto" />
+            </label>
+            <label class="field">
+              <span class="label">Quality steps <span id="stepVal">32</span></span>
+              <input type="range" name="num_step" id="num_step" min="4" max="64" step="1" value="32" />
+            </label>
+            <label class="field check">
+              <input type="checkbox" name="denoise" id="denoise" value="true" checked />
+              <span>Cleaner speech</span>
+            </label>
+            <label class="field check">
+              <input type="checkbox" name="normalize_text" id="normalize_text" value="true" />
+              <span>Normalize numbers</span>
+            </label>
+          </div>
+        </details>
+
+        <details class="advanced settings compact-settings" open>
+          <summary>Advanced parameters</summary>
+          <div class="attrs dense">
+            <label class="field">
+              <span class="label">Guidance <span id="gsVal">2.0</span></span>
+              <input type="range" name="guidance_scale" id="guidance_scale" min="0" max="4" step="0.1" value="2" />
+            </label>
+            <label class="field">
+              <span class="label">Time shift <span id="tshiftVal">0.10</span></span>
+              <input type="range" name="t_shift" id="t_shift" min="0" max="1" step="0.01" value="0.1" />
+            </label>
+            <label class="field">
+              <span class="label">Position temp <span id="posTempVal">5.0</span></span>
+              <input type="range" name="position_temperature" id="position_temperature" min="0" max="20" step="0.1" value="5" />
+            </label>
+            <label class="field">
+              <span class="label">Class temp <span id="classTempVal">0.0</span></span>
+              <input type="range" name="class_temperature" id="class_temperature" min="0" max="2" step="0.05" value="0" />
+            </label>
+            <label class="field">
+              <span class="label">Layer penalty <span id="layerVal">5.0</span></span>
+              <input type="range" name="layer_penalty_factor" id="layer_penalty_factor" min="0" max="20" step="0.1" value="5" />
+            </label>
+            <label class="field">
+              <span class="label">Pad silence (s)</span>
+              <input type="number" name="pad_duration" value="0.1" min="0" step="0.01" />
+            </label>
+            <label class="field">
+              <span class="label">Fade in/out (s)</span>
+              <input type="number" name="fade_duration" value="0.1" min="0" step="0.01" />
+            </label>
+            <label class="field">
+              <span class="label">Chunk duration (s)</span>
+              <input type="number" name="audio_chunk_duration" value="15" min="1" step="0.5" />
+            </label>
+            <label class="field">
+              <span class="label">Chunk threshold (s)</span>
+              <input type="number" name="audio_chunk_threshold" value="30" min="1" step="0.5" />
+            </label>
+            <label class="field check">
+              <input type="checkbox" name="preprocess_prompt" value="true" checked />
+              <span>Preprocess reference</span>
+            </label>
+            <label class="field check">
+              <input type="checkbox" name="postprocess_output" value="true" checked />
+              <span>Trim silence</span>
+            </label>
+          </div>
+        </details>
+      </form>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>Runs on your machine with OmniVoice. Only clone voices you have permission to use.</p>
+  </footer>
+
+  <script src="/static/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,35 @@
+# Virtual env & Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+*.egg
+
+# Local model weights (download separately — several GB)
+models/
+
+# Runtime data
+uploads/
+outputs/
+voices/
+*.wav
+*.mp3
+*.flac
+*.ogg
+*.m4a
+*.pt
+
+# Env / OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / misc
+.idea/
+*.log
+scripts/_prompt_src.py
+scripts/smoke_*.py
+config.bat
+node_modules
